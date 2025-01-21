@@ -1,0 +1,20 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "My private API based on easy-api.ts",
+  "main": "./index.js",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "keywords": [],
+  "author": "Cyberghxst",
+  "license": "Apache-2.0",
+  "private": "true",
+  "packageManager": "pnpm@9.15.2",
+  "dependencies": {
+    "easy-api.ts": "^3.7.6"
+  },
+  "devDependencies": {
+    "miduco": "^1.0.2"
+  }
+}
