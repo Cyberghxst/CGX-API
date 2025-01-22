@@ -115,6 +115,29 @@ const route = {
             $c[Drawing the username.]
             $font[10;Arial]
             $drawText[$get[username];190;67;100;100]
+
+            $c[Drawing the badges.]
+            $if[$objectIn[body;badges]==true;
+                $let[limit;8]
+                $let[acc;20]
+                $let[i;0]
+                $jsonArrayParse[badges;$objectProperty[body;badges]]
+                $let[bgSize;$multi[10;$jsonArrayLength[badges]]]
+                $jsonArrayForEach[badges;
+                    $color[000000]
+                    $opacity[40]
+                    $drawRect[180;$sum[$objectProperty[displayNameMeasures;height];$objectProperty[usernameMeasures;height];57];$sum[$get[bgSize];35];20;5]
+                    $opacity[100]
+                    $if[$and[$get[i]<$get[limit];$objectIn[badgeMap;%element%]]==true;
+                        $let[currentElement;%element%]
+                        $let[limit;$sum[$get[limit];1]]
+                        $loadImage[$get[currentElement];path;$objectProperty[badgeMap;$jsonArrayAt[badges;$get[i]]]]
+                        $drawImage[$get[currentElement];$sum[170;$get[acc]];$sum[$objectProperty[displayNameMeasures;height];$objectProperty[usernameMeasures;height];60];15;15]
+                        $let[acc;$sum[$get[acc];20]]
+                        $let[i;$sum[$get[i];1]]
+                    ]
+                ]
+            ]
         ]
 
         $c[Sending the response.]
